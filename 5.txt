@@ -1,0 +1,15 @@
+5)
+SELECT
+id,
+address
+FROM housings
+WHERE complex_id =
+(SELECT id FROM complexes WHERE name = 'ipsum.');
+
+SELECT
+id,
+(select fio from realtors where id=realtor_id),
+housing_id
+FROM agreements
+WHERE application_id =
+(SELECT id FROM applications where email='ut.dolor@icloud.com');
