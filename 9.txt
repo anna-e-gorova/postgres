@@ -1,0 +1,20 @@
+9)
+CREATE OR REPLACE FUNCTION check_apllication_trigger()
+RETURNS TRIGGER AS
+$$
+BEGIN
+IF EXISTS (SELECT agreements.id AS agr
+	FROM agreements
+	WHERE application_id = NEW.id 
+		AND (agreement_status_id = 2 OR agreement_status_id = 3))
+THEN
+    RAISE EXCEPTION 'Agreement for registration. You can not change apllication now';
+END IF;
+RETURN NEW;
+END
+$$
+LANGUAGE PLPGSQL;
+
+CREATE TRIGGER check_apllications_update BEFORE UPDATE ON applications
+FOR EACH ROW
+EXECUTE FUNCTION check_apllication_trigger();

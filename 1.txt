@@ -1,0 +1,90 @@
+1)
+CREATE TABLE housings (
+id SERIAL PRIMARY KEY,
+address VARCHAR(240) NOT NULL,
+price BIGINT NOT NULL,
+square BIGINT NOT NULL,
+complex_id INT NOT NULL,
+housing_type_id INT NOT NULL,
+building_status_id INT NOT NULL,
+photo_id INT
+);
+
+CREATE TABLE complexes (
+id SERIAL PRIMARY KEY,
+name VARCHAR(100) NOT NULL,
+district_id INT NOT NULL,
+photo_id INT,
+expire_date VARCHAR(15)
+);
+
+CREATE TABLE photos (
+id SERIAL PRIMARY KEY,
+url VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE districts (
+id SERIAL PRIMARY KEY,
+name VARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE housing_types (
+id SERIAL PRIMARY KEY,
+name VARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE building_statuses (
+id SERIAL PRIMARY KEY,
+status VARCHAR(20) NOT NULL UNIQUE,
+);
+
+CREATE TABLE housing_options (
+housing_id INT PRIMARY KEY,
+mortgage BOOLEAN,
+mat_capital BOOLEAN,
+installment_plan BOOLEAN,
+dkp BOOLEAN
+);
+
+CREATE TABLE housing_communications (
+housing_id INT PRIMARY KEY,
+central_water BOOLEAN,
+garbage_chute BOOLEAN,
+gas BOOLEAN,
+central_heating BOOLEAN
+);
+
+CREATE TABLE applications (
+id SERIAL PRIMARY KEY,
+create_at TIMESTAMP NOT NULL,
+fio VARCHAR(100),
+phone_number VARCHAR(15) NOT NULL,
+email VARCHAR(120),
+application_status_id INT NOT NULL
+);
+
+CREATE TABLE application_statuses (
+id SERIAL PRIMARY KEY,
+name  VARCHAR(100) NOT NULL UNIQUE,
+);
+
+CREATE TABLE realtors (
+id SERIAL PRIMARY KEY,
+fio  VARCHAR(100) NOT NULL,
+login VARCHAR(20) NOT NULL UNIQUE,
+pass VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE agreements (
+id SERIAL PRIMARY KEY,
+application_id INT NOT NULL,
+realtor_id INT NOT NULL,
+housing_id INT NOT NULL,
+agreement_status_id INT NOT NULL
+create_at TIMESTAMP NOT NULL,
+);
+
+CREATE TABLE agreement_statuses (
+id SERIAL PRIMARY KEY,
+name  VARCHAR(100) NOT NULL UNIQUE
+);

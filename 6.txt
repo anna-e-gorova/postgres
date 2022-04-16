@@ -1,0 +1,22 @@
+6)
+SELECT
+	housings.id,
+	address,
+	complex_id,
+	complexes.name,
+	complexes.photo_id
+FROM housings
+	JOIN complexes
+		ON housings.complex_id = complexes.id
+	WHERE housings.photo_id = complexes.photo_id
+	
+	
+SELECT
+	realtors.id AS realtor_id,
+	fio,
+	agreements.id AS agreement_id,
+	agreements.housing_id
+FROM realtors
+	JOIN agreements
+		ON agreements.realtor_id = 	realtors.id
+	WHERE agreement_status_id = 1;

@@ -1,0 +1,76 @@
+3)
+ALTER TABLE agreements
+	ADD CONSTRAINT agreements_application_id_fk
+	FOREIGN KEY (application_id)
+	REFERENCES applications (id)
+	ON DELETE RESTRICT;
+	
+ALTER TABLE agreements
+	ADD CONSTRAINT agreements_realtor_id_fk
+	FOREIGN KEY (realtor_id)
+	REFERENCES realtors (id)
+	ON DELETE RESTRICT;
+	
+ALTER TABLE agreements
+	ADD CONSTRAINT agreements_housing_id_fk
+	FOREIGN KEY (housing_id)
+	REFERENCES housings (id)
+	ON DELETE RESTRICT;
+	
+ALTER TABLE agreements
+	ADD CONSTRAINT agreements_agreement_status_id_fk
+	FOREIGN KEY (agreement_status_id)
+	REFERENCES agreement_statuses (id)
+	ON DELETE RESTRICT;
+	
+ALTER TABLE applications
+	ADD CONSTRAINT applications_application_status_id_fk
+	FOREIGN KEY (application_status_id)
+	REFERENCES application_statuses (id)
+	ON DELETE RESTRICT;
+	
+ALTER TABLE housing_communications
+	ADD CONSTRAINT housing_communications_housing_id_fk
+	FOREIGN KEY (housing_id)
+	REFERENCES housings (id)
+	ON DELETE CASCADE;	
+	
+ALTER TABLE housings
+	ADD CONSTRAINT housings_complex_id_fk
+	FOREIGN KEY (complex_id)
+	REFERENCES complexes (id)
+	ON DELETE CASCADE;
+
+ALTER TABLE housings
+	ADD CONSTRAINT housings_housing_type_id_fk
+	FOREIGN KEY (housing_type_id)
+	REFERENCES housing_types (id)
+	ON DELETE RESTRICT;
+	
+ALTER TABLE housings
+	ADD CONSTRAINT housings_building_status_id_fk
+	FOREIGN KEY (building_status_id)
+	REFERENCES building_statuses (id)
+	ON DELETE RESTRICT;
+	
+ALTER TABLE housings
+	ADD CONSTRAINT housings_photo_id_fk
+	FOREIGN KEY (photo_id)
+	REFERENCES photos (id);
+	
+ALTER TABLE complexes
+	ADD CONSTRAINT complexes_district_id_fk
+	FOREIGN KEY (district_id)
+	REFERENCES districts (id)
+	ON DELETE RESTRICT;
+	
+ALTER TABLE complexes
+	ADD CONSTRAINT complexes_photo_id_fk
+	FOREIGN KEY (photo_id)
+	REFERENCES photos (id);
+	
+ALTER TABLE housing_options
+	ADD CONSTRAINT housing_options_housing_id_fk
+	FOREIGN KEY (housing_id)
+	REFERENCES housings (id)
+	ON DELETE CASCADE;

@@ -1,0 +1,26 @@
+7)
+CREATE VIEW housings_with_central_water_and_gas AS
+SELECT
+	housing_id,
+	central_water,
+	gas,
+	housings.address
+FROM housing_communications
+	JOIN housings
+	ON housing_communications.housing_id = housings.id;
+	
+SELECT * FROM housings_with_central_water_and_gas;
+
+CREATE VIEW houses_by_districts_and_complex AS
+SELECT
+	districts.id AS district_id,
+	districts.name AS district_name,
+	housings.address,
+	complexes.name AS complex_name
+FROM housings
+	JOIN complexes
+		ON housings.complex_id = complexes.id
+	JOIN districts
+		ON complexes.district_id = districts.id;
+	
+SELECT * FROM houses_by_districts_and_complex;

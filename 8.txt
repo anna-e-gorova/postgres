@@ -1,0 +1,13 @@
+8)
+CREATE OR REPLACE FUNCTION most_succesfull_realtor(status_agreement_id INTEGER)
+RETURNS VARCHAR(100) AS
+$$
+SELECT 
+	(SELECT fio FROM realtors WHERE id = realtor_id)
+FROM agreements
+WHERE agreement_status_id = status_agreement_id
+GROUP BY realtor_id
+ORDER BY COUNT(*) DESC
+LIMIT 1;
+$$
+LANGUAGE SQL;
